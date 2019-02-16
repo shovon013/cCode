@@ -1,0 +1,57 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+
+using namespace std;
+
+class Object{
+	public:
+		string fileName, outFileName;
+		void doIt();
+};
+
+void Object::doIt()
+{
+	cout <<"Input File Name: "<< fileName << endl;
+	ifstream fIn;
+	ofstream newFile(outFileName);
+	fIn.open(fileName);
+
+	char curC;
+	int noOfL = 0;
+	int index = 0;
+
+
+	while (!fIn.eof()) {
+		fIn.get(curC);
+		//cout << curC;
+		if (curC == '\n') {
+			++noOfL;
+		}
+		//if (isalpha(curC))		//(isdigit(C1))
+		if (isdigit(curC))
+		{
+			index++;
+			cout << curC << " ";
+			newFile << curC << " ";
+		}
+	}
+	cout << endl;
+	cout << "Number of Targets: " << index << endl;
+	cout << "Number Of Lines: " << noOfL + 1 << endl;
+
+	
+}
+
+
+int main() {
+
+	Object obj1;
+	obj1.fileName = "Text1.txt";
+	obj1.outFileName = "AlphaOut.txt";
+	obj1.doIt();
+
+
+	std::cin.get();
+	return 0;
+}
